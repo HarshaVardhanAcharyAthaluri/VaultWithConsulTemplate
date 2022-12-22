@@ -18,27 +18,27 @@ Get Consul-Template from : https://releases.hashicorp.com/consul-template/
 
 `` vault secrets enable pki ``
 or via the GUI naviage to http://vault-server:8200 and click on enable new engine and enable the PKI Engine.
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/1.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/1.JPG"></code>
 - Select PKI Engine
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/2.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/2.JPG"></code>
 - Give the Name
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/3.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/3.JPG"></code>
 - Now Configure Root CA By selecting PKI Engine which we created (pki_root_CA)
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/4.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/5.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/4.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/5.JPG"></code>
 # Configure a Role
 - All future requests will target certain Roles. This will be a collection of Roles varies from DB Certs to Web Certs, each with a specific domain. For example, policies will eventually be set based on those Roles, of who is allowed to access which role, and finally how long the Cert should live for “TTL” under each role (5 seconds expiry “TTL” but could be renewed up to 24 hours “Max TTL” ).
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/6.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/7.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/8.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/9.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/10.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/11.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/12.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/6.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/7.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/8.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/9.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/10.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/11.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/12.JPG"></code>
 # Fetching Certificates or Issue the Certificate to test is our Role had that privillages
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/13.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/14.JPG></code>
-<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/15.JPG></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/13.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/14.JPG"></code>
+<code><img height="70" src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/15.JPG"></code>
 
 Now that we have a fully working Role that allows us to fetch certificates, we want to automate the renewal of the certificates. This could be easily handled by schedulers or config management on the host itself by calling the Vault API and deploying a new certificate when the TTL is reached. However, in our case, we will assume that we have Consul Template deployed on the host in order to automate the deployment.
 
