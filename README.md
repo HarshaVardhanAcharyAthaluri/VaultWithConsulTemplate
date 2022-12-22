@@ -18,7 +18,7 @@ Get Consul-Template from : https://releases.hashicorp.com/consul-template/
 
 `` vault secrets enable pki ``
 or via the GUI naviage to http://vault-server:8200 and click on enable new engine and enable the PKI Engine.
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![This is an image](https://github.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/blob/main/1.JPG)
 - Select PKI Engine
 ![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 - Give the Name
