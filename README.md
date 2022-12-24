@@ -26,17 +26,19 @@ or via the GUI naviage to http://vault-server:8200 and click on enable new engin
 - Now Configure Root CA By selecting PKI Engine which we created (pki_root_CA) <br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/4.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/5.JPG"></code><br/>
+<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/6.JPG"></code><br/>
 # Configure a Role
 - All future requests will target certain Roles. This will be a collection of Roles varies from DB Certs to Web Certs, each with a specific domain. For example, policies will eventually be set based on those Roles, of who is allowed to access which role, and finally how long the Cert should live for “TTL” under each role (5 seconds expiry “TTL” but could be renewed up to 24 hours “Max TTL” ).<br/>
-<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/6.JPG"></code><br/>
+
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/7.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/8.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/9.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/10.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/11.JPG"></code><br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/12.JPG"></code><br/>
-# Fetching Certificates or Issue the Certificate to test is our Role had that privillages
 <code><img src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/13.JPG"></code><br/>
+# Fetching Certificates or Issue the Certificate to test is our Role had that privillages
+
 <code><img src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/14.JPG"></code><br/>
 <code><img src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/15.JPG"></code><br/>
 
@@ -48,7 +50,7 @@ https://releases.hashicorp.com/consul-template/
 # Configuration
 We will use a simple configuration for our Consul Template covering only the Vault integration scope, to create a config.hcl file with the following
 
-``
+```
 vault {
   address = "http://localhost:8200"
   token="hvs.1wYTvtf3esDZ5hsQ7uFm5hSf"
@@ -63,7 +65,7 @@ template {
   contents="{{ with secret \"pki_root_CA/issue/role_root_ca\" \"common_name=localhost\" }}{{ .Data.private_key }}{{ end }}"
   destination="./localhost.key"
 }
-``
+```
 # Running Consul Template
 `` consul-template -config config.hcl ``
 
