@@ -7,6 +7,7 @@ Download Vault from https://developer.hashicorp.com/vault/downloads. Vault is pa
 Once the zip is downloaded, unzip the file into your designated directory. The vault binary inside is all that is necessary to run Vault (or vault.exe for Windows). No additional files are required to run Vault.
 
 Now to use Vault command line interface (CLI), you need to tell your platform where to find Vault.
+
 For Linux 
 ``  $ export VAULT_ADDR=http://127.0.0.1:8200 ``
 
