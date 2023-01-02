@@ -1,6 +1,96 @@
 # VaultWithConsulTemplate
 Vault + SpringBoot+ SSL+ ConsulTemplate for certificate auto renewal and revoke
 
+# Vault Server Installation
+Download Vault from https://developer.hashicorp.com/vault/downloads. Vault is packaged as a zip file.
+
+Once the zip is downloaded, unzip the file into your designated directory. The vault binary inside is all that is necessary to run Vault (or vault.exe for Windows). No additional files are required to run Vault.
+
+Now to use Vault command line interface (CLI), you need to tell your platform where to find Vault.
+For Linux 
+``  $ export VAULT_ADDR=http://127.0.0.1:8200 ``
+
+For Windows 
+`` set VAULT_ADDR=http://127.0.0.1:8200 ``
+
+Now Start Vault Server in Dev mode.
+
+`` vault server -dev `` 
+
+<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/17.JPG"></code><br/>
+
+# Test your installation
+ `` vault status ``
+ 
+ you will get some thing like below.
+ ```  
+    Key             Value
+    
+    ---             -----
+    
+    Seal Type       shamir
+    Sealed          false
+    Total Shares    5
+    Threshold       3
+    Version         0.11.1
+    Cluster Name    vault-cluster-ea8993ae
+    Cluster ID      79c8ebbb-70e3-5398-d62a-342d98e03bcf
+    HA Enabled      true
+    HA Cluster      https://127.0.0.1:8201
+    HA Mode         active 
+```
+ All looks good, your Vault server is already unsealed, because you’ve started it in development mode. Now login using your root token. You can find in CMD Screen Shot.
+
+# Setting Vault for Production Environment (Un-Seal)
+
+Create a file name vaultconfig.hcl for configuring vault on startup.
+
+```
+storage "file" {
+	path= "./vault-data"
+}
+
+listener "tcp" {
+  address = "127.0.0.1:8200"
+  tls_disable =1		
+}
+
+disable_mlock=true
+```
+
+Open a command prompt and run the following vault commands
+`` vault server -config ./vaultconfig.hcl ``
+
+<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/18.JPG"></code><br/>
+
+Vault is now started. Open another command prompt and run the following commands
+
+`` set VAULT_ADDR=http://localhost:8200
+   vault operator init
+``
+<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/19.JPG"></code><br/>
+
+`` set VAULT_TOKEN=s.wO85qvAKuzL4QQifLE9N5aiq ``
+
+Check Vault
+
+`` vault status `` 
+<code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/20.JPG"></code><br/>
+
+We can see here that the Vault is sealed. We need to unseal it.
+
+Below Commands helps us to unseal with above tokens.
+
+``` 
+vault operator unseal X/tgqUrazZyMOWZi/0sVhsKyQq/5dIQaBWZabojSlgrf
+vault operator unseal YCRsxbQj4ydGq3vhrljJCk31rT/jVioBDFPtCLdUXAad
+vault operator unseal rlN7ekOJTtj2x5Zgb5thLSTKgT0a7d/dmP/2kHyhIjBz
+vault operator unseal OVwAz6geqoyUp+RMP6EWZP+6B8d6YAPvi/eNDLH5ky+Y
+vault operator unseal ufsoI+y5iqIrS3aKSYQTWbhRD25Qu5tIK0GBLoPc7PGT
+```
+
+
+
 # Certificates Automation with Vault and Consul Template
 its a quick setup we use UI to configure CA
 
