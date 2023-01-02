@@ -62,20 +62,28 @@ Open a command prompt and run the following vault commands
 `` vault server -config ./vaultconfig.hcl ``
 
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/18.JPG"></code><br/>
+<br/>
 
 Vault is now started. Open another command prompt and run the following commands
 
 `` set VAULT_ADDR=http://localhost:8200
    vault operator init
 ``
+<br/>
+
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/19.JPG"></code><br/>
+
+<br/>
 
 `` set VAULT_TOKEN=s.wO85qvAKuzL4QQifLE9N5aiq ``
 
 Check Vault
 
 `` vault status `` 
+<br/>
 <code><img  src="https://raw.githubusercontent.com/HarshaVardhanAcharyAthaluri/VaultWithConsulTemplate/master/screenshots/20.JPG"></code><br/>
+
+<br/>
 
 We can see here that the Vault is sealed. We need to unseal it.
 
